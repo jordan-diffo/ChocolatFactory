@@ -1,32 +1,25 @@
-public class Chocolatier implements Runnable {
-    private Tempereuse tempereuse;
-    private Mouleuse mouleuse;
+public class Chocolatier extends Thread {
+    private final int id;
+    private final Chocolaterie chocolaterie;
+    private final String provenance;
 
-    public Chocolatier(Tempereuse tempereuse, Mouleuse mouleuse) {
-        this.tempereuse = tempereuse;
-        this.mouleuse = mouleuse;
+    public Chocolatier(int id, Chocolaterie chocolaterie) {
+        this.id = id;
+        this.chocolaterie = chocolaterie;
+        this.provenance = id % 2 == 0 ? "Pérou" : "Madagascar";
     }
 
     @Override
     public void run() {
-        requiereTempereuse();
-        tempereChocolat();
-        donneChocolat();
-        mouleuse.remplit();
-        mouleuse.garnit();
-        mouleuse.ferme();
-    }
-
-    public void requiereTempereuse() {
-        System.out.println("Chocolatier demande la tempéreuse.");
-    }
-
-    public void tempereChocolat() {
-        tempereuse.tempereChocolat();
-    }
-
-    public void donneChocolat() {
-        tempereuse.donneChocolat();
+        try {
+            chocolaterie.requiereMouleuse(id);
+            chocolaterie.tempereChocolat(id, provenance);
+            chocolaterie.mouleChocolat(id, provenance);
+            chocolaterie.refroiditChocolat(id);
+            chocolaterie.donneChocolat(id);
+            chocolaterie.libereMouleuse(id);
+        } catch (InterruptedException e) {
+            System.err.println("Chocolatier " + id + " interrompu.");
+        }
     }
 }
-
