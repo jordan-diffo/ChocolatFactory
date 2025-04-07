@@ -4,10 +4,10 @@ import java.util.concurrent.Semaphore;
 
 class Tempereuse {
     private final Semaphore semaphore;
-    private final String nom;
+    private final String tempereuseNom;
 
     public Tempereuse(String nom) {
-        this.nom = nom;
+        this.tempereuseNom = nom;
         this.semaphore = new Semaphore(1); // Une seule chocolatière peut utiliser la tempéreuse à la fois
     }
 
@@ -15,7 +15,7 @@ class Tempereuse {
         return semaphore;
     }
 
-    public String getNom() {
-        return nom;
+    public String getTempereuseNom() {
+        return tempereuseNom;
     }
 }
