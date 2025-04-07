@@ -3,39 +3,33 @@ import ChocolaterieSystem.Chocolatier;
 
 public class Main {
     public static void main(String[] args) {
-        int nbChocolatiers = 5; // Valeur par défaut
-        int nbMouleuses = 2; // Valeur par défaut
-        int nbTempereuses = 2; // Valeur par défaut
+        // Définir les valeurs par défaut
+        int nbChocolatiers = 5;  // Valeur par défaut pour les chocolatiers
+        int nbMouleuses = 3;      // Valeur par défaut pour les mouleuses
+        int nbTempereuses = 2;    // Valeur par défaut pour les tempéreuses
 
-        // Vérification des arguments passés en ligne de commande
-        if (args.length >= 1) {
+        // Si des arguments sont passés en ligne de commande, les utiliser
+        if (args.length == 3) {
             try {
                 nbChocolatiers = Integer.parseInt(args[0]);
-            } catch (NumberFormatException e) {
-                System.out.println("Le nombre de chocolatiers doit être un entier valide.");
-            }
-        }
-        if (args.length >= 2) {
-            try {
                 nbMouleuses = Integer.parseInt(args[1]);
-            } catch (NumberFormatException e) {
-                System.out.println("Le nombre de mouleuses doit être un entier valide.");
-            }
-        }
-        if (args.length >= 3) {
-            try {
                 nbTempereuses = Integer.parseInt(args[2]);
             } catch (NumberFormatException e) {
-                System.out.println("Le nombre de tempéreuses doit être un entier valide.");
+                System.out.println("Les arguments doivent être des nombres entiers.");
+                return;
             }
+        } else {
+            // Afficher les valeurs par défaut utilisées
+            System.out.println("Aucun argument passé. Utilisation des valeurs par défaut : ");
+            System.out.println("Nombre de chocolatiers : " + nbChocolatiers);
+            System.out.println("Nombre de mouleuses : " + nbMouleuses);
+            System.out.println("Nombre de tempéreuses : " + nbTempereuses);
         }
 
-        System.out.println("Nombre de chocolatiers : " + nbChocolatiers);
-        System.out.println("Nombre de mouleuses : " + nbMouleuses);
-        System.out.println("Nombre de tempéreuses : " + nbTempereuses);
-
-        // Création de la chocolaterie et démarrage des chocolatiers
+        // Créer la chocolaterie avec les paramètres définis
         Chocolaterie chocolaterie = new Chocolaterie(nbMouleuses, nbTempereuses);
+
+        // Créer et lancer les chocolatiers
         for (int i = 0; i < nbChocolatiers; i++) {
             new Chocolatier(i, chocolaterie).start();
         }
