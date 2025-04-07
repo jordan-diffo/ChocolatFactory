@@ -10,7 +10,7 @@ public class Chocolatier extends Thread {
     public Chocolatier(int id, Chocolaterie chocolaterie) {
         this.id = id;
         this.chocolaterie = chocolaterie;
-        this.provenance = id % 2 == 0 ? "Pérou" : "Madagascar";
+        this.provenance = id % 2 == 0 ? "noir" : "blanc";
     }
 
     @Override
@@ -23,7 +23,7 @@ public class Chocolatier extends Thread {
             chocolaterie.donneChocolat(id);
             chocolaterie.libereMouleuse(id);
         } catch (InterruptedException e) {
-            System.err.println("ChocolaterieSystem.Chocolatier " + id + " interrompu.");
+            System.err.println("Chocolatier " + id + " interrompu.");
         }
     }
 }

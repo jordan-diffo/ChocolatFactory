@@ -10,34 +10,34 @@ public class Chocolaterie {
     }
 
     public void requiereMouleuse(int id) throws InterruptedException {
-        System.out.println("ChocolaterieSystem.Chocolatier " + id + " attend une mouleuse...");
+        System.out.println("Chocolatier " + id + " attend une mouleuse...");
         mouleuses.acquire();
-        System.out.println("ChocolaterieSystem.Chocolatier " + id + " a obtenu une mouleuse.");
+        System.out.println("Chocolatier " + id + " a obtenu une mouleuse.");
     }
 
     public void tempereChocolat(int id, String provenance) throws InterruptedException {
-        System.out.println("ChocolaterieSystem.Chocolatier " + id + " tempère le chocolat " + provenance + "...");
+        System.out.println("Chocolatier " + id + " tempère le chocolat " + provenance + "...");
         Thread.sleep(500); // simulation du temps
     }
 
     public void mouleChocolat(int id, String provenance) throws InterruptedException {
-        System.out.println("ChocolaterieSystem.Chocolatier " + id + " moule le chocolat " + provenance + "...");
+        System.out.println("Chocolatier " + id + " moule le chocolat " + provenance + "...");
         Thread.sleep(500);
     }
 
     public void refroiditChocolat(int id) throws InterruptedException {
-        System.out.println("ChocolaterieSystem.Chocolatier " + id + " refroidit le chocolat...");
+        System.out.println("Chocolatier " + id + " refroidit le chocolat...");
         Thread.sleep(500);
     }
 
     public void donneChocolat(int id) throws InterruptedException {
-        System.out.println("ChocolaterieSystem.Chocolatier " + id + " donne le chocolat.");
+        System.out.println("Chocolatier " + id + " donne le chocolat.");
         Thread.sleep(300);
     }
 
     public void libereMouleuse(int id) {
         mouleuses.release();
-        System.out.println("ChocolaterieSystem.Chocolatier " + id + " a libéré une mouleuse.");
+        System.out.println("Chocolatier " + id + " a libéré une mouleuse.");
     }
 
     // Point d'entrée pour tester
