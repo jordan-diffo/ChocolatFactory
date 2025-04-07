@@ -2,6 +2,7 @@ package ChocolaterieSystem;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class Chocolaterie {
     private final List<Mouleuse> mouleuses;
@@ -24,7 +25,7 @@ public class Chocolaterie {
     }
 
     // Méthodes pour gérer les mouleuses
-    public void requiereMouleuse(int id) throws InterruptedException {
+    /*public void requiereMouleuse(int id) throws InterruptedException {
         for (Mouleuse mouleuse : mouleuses) {
             if (mouleuse.getSemaphore().tryAcquire()) {
                 System.out.println("Chocolatier " + id + " a obtenu la mouleuse " + mouleuse.getMouleuseNom() + " !");
@@ -37,7 +38,39 @@ public class Chocolaterie {
             System.out.println("Chocolatier " + id + " a obtenu la mouleuse " + mouleuse.getMouleuseNom() + " !");
             return;
         }
+    }*/
+
+    public boolean requiereMouleuse(int id) throws InterruptedException {
+        System.out.println("Chocolatier " + id + " tente d'obtenir une mouleuse...");
+
+        // Simulation d'une rupture (20% de chances)
+        if (Math.random() < 0.2) {
+            System.out.println("Rupture simulée : Chocolatier " + id + " ne peut pas mouler pour le moment.");
+            Thread.sleep(1000); // Attente avant de réessayer
+            return requiereMouleuse(id); // Réessayer récursivement
+        }
+
+        // Essaye d'acquérir une mouleuse immédiatement
+        for (Mouleuse mouleuse : mouleuses) {
+            if (mouleuse.getSemaphore().tryAcquire()) {
+                System.out.println("Chocolatier " + id + " a obtenu la mouleuse " + mouleuse.getMouleuseNom());
+                return true;
+            }
+        }
+
+        // Si aucune n'est libre immédiatement, on attend
+        System.out.println("Toutes les mouleuses sont occupées. Chocolatier " + id + " attend...");
+
+        for (Mouleuse mouleuse : mouleuses) {
+            mouleuse.getSemaphore().acquire();
+            System.out.println("Chocolatier " + id + " a obtenu la mouleuse " + mouleuse.getMouleuseNom());
+            return true;
+        }
+
+        System.err.println("Erreur inattendue : aucune mouleuse acquise.");
+        return false;
     }
+
 
     public void libereMouleuse(int id) {
         for (Mouleuse mouleuse : mouleuses) {
@@ -50,7 +83,7 @@ public class Chocolaterie {
     }
 
     // Méthodes pour gérer les tempéreuses
-    public void requiereTempereuse(int id) throws InterruptedException {
+    /*public void requiereTempereuse(int id) throws InterruptedException {
         for (Tempereuse tempereuse : tempereuses) {
             if (tempereuse.getSemaphore().tryAcquire()) {
                 System.out.println("Chocolatier " + id + " a obtenu la tempéreuse " + tempereuse.getTempereuseNom() + " !");
@@ -63,6 +96,37 @@ public class Chocolaterie {
             System.out.println("Chocolatier " + id + " a obtenu la tempéreuse " + tempereuse.getTempereuseNom() + " !");
             return;
         }
+    }*/
+
+    public boolean requiereTempereuse(int id) throws InterruptedException {
+        System.out.println("Chocolatier " + id + " attend une tempéreuse...");
+
+        // Simule une rupture (20% de chance)
+        if (Math.random() < 0.20) {
+            System.out.println("Rupture simulée : Chocolatier " + id + " ne peut pas tempérer pour le moment.");
+            Thread.sleep(1000);
+            return requiereTempereuse(id); // Retente d'acquérir la tempéreuse après 1 seconde
+        }
+
+        // Essaye de prendre une tempéreuse sans attendre (non bloquant)
+        for (Tempereuse tempereuse : tempereuses) {
+            if (tempereuse.getSemaphore().tryAcquire()) {
+                System.out.println("Chocolatier " + id + " a obtenu la tempéreuse " + tempereuse.getTempereuseNom());
+                return true;
+            }
+        }
+
+        // Si toutes sont occupées, on attend sur la première disponible
+        System.out.println("Toutes les tempéreuses sont occupées. Chocolatier " + id + " attend...");
+        for (Tempereuse tempereuse : tempereuses) {
+            if (tempereuse.getSemaphore().tryAcquire(2, TimeUnit.SECONDS)) {
+                System.out.println("Chocolatier " + id + " a finalement obtenu la tempéreuse " + tempereuse.getTempereuseNom());
+                return true;
+            }
+        }
+
+        System.err.println("Erreur inattendue : aucune tempéreuse acquise.");
+        return false;
     }
 
     public void libereTempereuse(int id) {
