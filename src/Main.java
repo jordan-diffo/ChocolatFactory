@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
         int nbChocolatiers = 5; // Valeur par défaut
         int nbMouleuses = 2; // Valeur par défaut
-        int nbTempereuses = 1; // Valeur par défaut
+        int nbTempereuses = 2; // Valeur par défaut
 
         // Vérification des arguments passés en ligne de commande
         if (args.length >= 1) {

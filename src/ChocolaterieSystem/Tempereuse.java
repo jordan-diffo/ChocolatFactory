@@ -1,35 +1,21 @@
 package ChocolaterieSystem;
 
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.Semaphore;
 
-public class Tempereuse {
-    private final Lock lock = new ReentrantLock(); // pour la synchronisation
+class Tempereuse {
+    private final Semaphore semaphore;
+    private final String nom;
 
-    public void tempereChocolat() {
-        try {
-            lock.lock();
-            System.out.println("Températion du chocolat...");
-            // Attendre un moment pour simuler le temps de travail
-            Thread.sleep(1000);
-            System.out.println("Chocolat tempéré.");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            lock.unlock();
-        }
+    public Tempereuse(String nom) {
+        this.nom = nom;
+        this.semaphore = new Semaphore(1); // Une seule chocolatière peut utiliser la tempéreuse à la fois
     }
 
-    public void donneChocolat() {
-        try {
-            lock.lock();
-            System.out.println("Donner le chocolat...");
-            Thread.sleep(500);
-            System.out.println("Chocolat donné.");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            lock.unlock();
-        }
+    public Semaphore getSemaphore() {
+        return semaphore;
+    }
+
+    public String getNom() {
+        return nom;
     }
 }

@@ -1,7 +1,5 @@
 package ChocolaterieSystem;
 
-import ChocolaterieSystem.Chocolaterie;
-
 public class Chocolatier extends Thread {
     private final int id;
     private final Chocolaterie chocolaterie;

@@ -1,47 +1,21 @@
 package ChocolaterieSystem;
 
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.Semaphore;
 
-public class Mouleuse {
-    private final Lock lock = new ReentrantLock(); // pour la synchronisation
+class Mouleuse {
+    private final Semaphore semaphore;
+    private final String nom;
 
-    public void remplit() {
-        try {
-            lock.lock();
-            System.out.println("Remplissage du moule...");
-            Thread.sleep(800);
-            System.out.println("Moule rempli.");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            lock.unlock();
-        }
+    public Mouleuse(String nom) {
+        this.nom = nom;
+        this.semaphore = new Semaphore(1); // Une seule chocolatière peut utiliser la mouleuse à la fois
     }
 
-    public void garnit() {
-        try {
-            lock.lock();
-            System.out.println("Garniture du moule...");
-            Thread.sleep(600);
-            System.out.println("Moule garni.");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            lock.unlock();
-        }
+    public Semaphore getSemaphore() {
+        return semaphore;
     }
 
-    public void ferme() {
-        try {
-            lock.lock();
-            System.out.println("Fermeture du moule...");
-            Thread.sleep(400);
-            System.out.println("Moule fermé.");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            lock.unlock();
-        }
+    public String getNom() {
+        return nom;
     }
 }
