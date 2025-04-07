@@ -1,3 +1,7 @@
+package ChocolaterieSystem;
+
+import ChocolaterieSystem.Chocolaterie;
+
 public class Chocolatier extends Thread {
     private final int id;
     private final Chocolaterie chocolaterie;
@@ -19,7 +23,7 @@ public class Chocolatier extends Thread {
             chocolaterie.donneChocolat(id);
             chocolaterie.libereMouleuse(id);
         } catch (InterruptedException e) {
-            System.err.println("Chocolatier " + id + " interrompu.");
+            System.err.println("ChocolaterieSystem.Chocolatier " + id + " interrompu.");
         }
     }
 }

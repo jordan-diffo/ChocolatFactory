@@ -1,3 +1,5 @@
+package ChocolaterieManager;
+
 import java.util.concurrent.Semaphore;
 
 public class RuptureApprovisionnement {
