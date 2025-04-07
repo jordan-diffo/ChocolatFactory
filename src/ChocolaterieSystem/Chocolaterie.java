@@ -7,9 +7,9 @@ public class Chocolaterie {
     private final Semaphore tempereuses;
 
 
-    public Chocolaterie() {
-        this.mouleuses = new Semaphore(2); // Seulement 2 mouleuses disponibles
-        this.tempereuses = new Semaphore(3);
+    public Chocolaterie(int nbMouleuses, int nbTempereuses) {
+        this.mouleuses = new Semaphore(nbMouleuses); // Nombre configurable de mouleuses
+        this.tempereuses = new Semaphore(nbTempereuses); // Nombre configurable de tempéreuses
     }
 
     public void requiereMouleuse(int id) throws InterruptedException {
@@ -38,30 +38,27 @@ public class Chocolaterie {
         Thread.sleep(500); // simulation du temps
     }
 
-    public void mouleChocolat(int id, String provenance) throws InterruptedException {
-        System.out.println("Chocolatier " + id + " moule le chocolat " + provenance + "...");
-        Thread.sleep(500);
-    }
-
-    public void refroiditChocolat(int id) throws InterruptedException {
-        System.out.println("Chocolatier " + id + " refroidit le chocolat...");
-        Thread.sleep(500);
-    }
 
     public void donneChocolat(int id) throws InterruptedException {
         System.out.println("Chocolatier " + id + " donne le chocolat.");
         Thread.sleep(300);
     }
 
+    public void remplit(int id) throws InterruptedException {
+        System.out.println("Chocolatier " + id + " remplit le moule...");
+        Thread.sleep(800);
+        System.out.println("Moule rempli.");
+    }
 
+    public void garnit(int id) throws InterruptedException {
+        System.out.println("Chocolatier " + id + " garnit le moule...");
+        Thread.sleep(600);
+        System.out.println("Moule garni.");
+    }
 
-    // Point d'entrée pour tester
-    public static void main(String[] args) {
-        int nbChocolatiers = 5;
-        Chocolaterie chocolaterie = new Chocolaterie();
-
-        for (int i = 0; i < nbChocolatiers; i++) {
-            new Chocolatier(i, chocolaterie).start();
-        }
+    public void ferme(int id) throws InterruptedException {
+        System.out.println("Chocolatier " + id + " ferme le moule...");
+        Thread.sleep(400);
+        System.out.println("Moule fermé.");
     }
 }

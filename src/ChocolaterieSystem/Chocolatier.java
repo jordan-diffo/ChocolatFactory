@@ -16,17 +16,25 @@ public class Chocolatier extends Thread {
     @Override
     public void run() {
         try {
+            // Chocolatier attend une tempéreuse
             chocolaterie.requiereTempereuse(id);
             chocolaterie.tempereChocolat(id, provenance);
-            chocolaterie.libereTempereuse(id);
-
-            chocolaterie.requiereMouleuse(id);
-            chocolaterie.mouleChocolat(id, provenance);
-            chocolaterie.refroiditChocolat(id);
             chocolaterie.donneChocolat(id);
+            chocolaterie.libereTempereuse(id); // Libération de la tempéreuse
+
+            // Chocolatier passe à la mouleuse
+            chocolaterie.requiereMouleuse(id);
+            // La mouleuse effectue ses actions
+            chocolaterie.remplit(id);
+            chocolaterie.garnit(id);
+            chocolaterie.ferme(id);
             chocolaterie.libereMouleuse(id);
+
+
         } catch (InterruptedException e) {
             System.err.println("Chocolatier " + id + " interrompu.");
         }
     }
 }
+
+
