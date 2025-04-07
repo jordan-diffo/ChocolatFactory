@@ -16,8 +16,11 @@ public class Chocolatier extends Thread {
     @Override
     public void run() {
         try {
-            chocolaterie.requiereMouleuse(id);
+            chocolaterie.requiereTempereuse(id);
             chocolaterie.tempereChocolat(id, provenance);
+            chocolaterie.libereTempereuse(id);
+
+            chocolaterie.requiereMouleuse(id);
             chocolaterie.mouleChocolat(id, provenance);
             chocolaterie.refroiditChocolat(id);
             chocolaterie.donneChocolat(id);

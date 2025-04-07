@@ -4,15 +4,33 @@ import java.util.concurrent.Semaphore;
 
 public class Chocolaterie {
     private final Semaphore mouleuses;
+    private final Semaphore tempereuses;
+
 
     public Chocolaterie() {
         this.mouleuses = new Semaphore(2); // Seulement 2 mouleuses disponibles
+        this.tempereuses = new Semaphore(3);
     }
 
     public void requiereMouleuse(int id) throws InterruptedException {
         System.out.println("Chocolatier " + id + " attend une mouleuse...");
         mouleuses.acquire();
         System.out.println("Chocolatier " + id + " a obtenu une mouleuse.");
+    }
+
+    public void libereMouleuse(int id) {
+        mouleuses.release();
+        System.out.println("Chocolatier " + id + " a libéré une mouleuse.");
+    }
+
+    public void requiereTempereuse(int id) throws InterruptedException{
+        System.out.println("Chocolatier " + id + " attend une tempereuse...");
+        tempereuses.acquire();
+        System.out.println("Chocolatier " + id + " a obtenu une tempereuse.");
+    }
+    public void libereTempereuse(int id) {
+        tempereuses.release();
+        System.out.println("Chocolatier " + id + " a libéré une tempereuse.");
     }
 
     public void tempereChocolat(int id, String provenance) throws InterruptedException {
@@ -35,10 +53,7 @@ public class Chocolaterie {
         Thread.sleep(300);
     }
 
-    public void libereMouleuse(int id) {
-        mouleuses.release();
-        System.out.println("Chocolatier " + id + " a libéré une mouleuse.");
-    }
+
 
     // Point d'entrée pour tester
     public static void main(String[] args) {
