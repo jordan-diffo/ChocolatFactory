@@ -24,22 +24,6 @@ public class Chocolaterie {
         }
     }
 
-    // Méthodes pour gérer les mouleuses
-    /*public void requiereMouleuse(int id) throws InterruptedException {
-        for (Mouleuse mouleuse : mouleuses) {
-            if (mouleuse.getSemaphore().tryAcquire()) {
-                System.out.println("Chocolatier " + id + " a obtenu la mouleuse " + mouleuse.getMouleuseNom() + " !");
-                return;
-            }
-        }
-        System.out.println("Chocolatier " + id + " attend une mouleuse.");
-        for (Mouleuse mouleuse : mouleuses) {
-            mouleuse.getSemaphore().acquire();
-            System.out.println("Chocolatier " + id + " a obtenu la mouleuse " + mouleuse.getMouleuseNom() + " !");
-            return;
-        }
-    }*/
-
     public boolean requiereMouleuse(int id) throws InterruptedException {
         System.out.println("Chocolatier " + id + " tente d'obtenir une mouleuse...");
 
@@ -81,22 +65,6 @@ public class Chocolaterie {
             }
         }
     }
-
-    // Méthodes pour gérer les tempéreuses
-    /*public void requiereTempereuse(int id) throws InterruptedException {
-        for (Tempereuse tempereuse : tempereuses) {
-            if (tempereuse.getSemaphore().tryAcquire()) {
-                System.out.println("Chocolatier " + id + " a obtenu la tempéreuse " + tempereuse.getTempereuseNom() + " !");
-                return;
-            }
-        }
-        System.out.println("Chocolatier " + id + " attend une tempéreuse.");
-        for (Tempereuse tempereuse : tempereuses) {
-            tempereuse.getSemaphore().acquire();
-            System.out.println("Chocolatier " + id + " a obtenu la tempéreuse " + tempereuse.getTempereuseNom() + " !");
-            return;
-        }
-    }*/
 
     public boolean requiereTempereuse(int id) throws InterruptedException {
         System.out.println("Chocolatier " + id + " attend une tempéreuse...");
