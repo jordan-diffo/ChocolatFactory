@@ -1,4 +1,4 @@
-package ChocolaterieSystem;
+package ChocolaterieSysteme;
 
 import java.util.List;
 import java.util.ArrayList;

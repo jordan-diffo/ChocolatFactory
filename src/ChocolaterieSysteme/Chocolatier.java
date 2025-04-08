@@ -1,4 +1,4 @@
-package ChocolaterieSystem;
+package ChocolaterieSysteme;
 
 public class Chocolatier extends Thread {
     private final int chocolatierId;

@@ -1,5 +1,5 @@
-import ChocolaterieSystem.Chocolaterie;
-import ChocolaterieSystem.Chocolatier;
+import ChocolaterieSysteme.Chocolaterie;
+import ChocolaterieSysteme.Chocolatier;
 
 public class Main {
     public static void main(String[] args) {

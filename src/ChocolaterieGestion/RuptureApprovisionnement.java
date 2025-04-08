@@ -1,4 +1,4 @@
-package ChocolaterieManager;
+package ChocolaterieGestion;
 
 import java.util.concurrent.Semaphore;
 
