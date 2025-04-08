@@ -1,3 +1,10 @@
+EQUIPE 28
+Jordan Ngankam Diffo 536 956 969
+Nicolas Castonguay - 536 774 848
+Houkr Sheng Tang - 537 264 295
+Diop Amadou Is - 111 283 255
+--
+
 Ce projet simule le fonctionnement concurrent d’une chocolaterie où plusieurs chocolatiers partagent des tempéreuses et des mouleuses limitées.
 Des ruptures simulées peuvent empêcher temporairement l’accès à certaines ressources.
 
