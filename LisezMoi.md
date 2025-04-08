@@ -26,6 +26,12 @@ Si aucun argument n’est fourni, les valeurs par défaut suivantes sont utilis�
 5 chocolatiers, 3 mouleuses, 2 tempéreuses
 Pour faire une simuler par défaut, il suffit de lancer directement main.java
 
+Gestion de priorités
+--
+La gestion de l'accès aux ressources est implémentées dans les méthodes requiereTempereuse, requiereMouleuse qui utilisent le principe de sémaphore.
+Cela permet à un seul chocolatier à la fois d'avoir accès une mouleuse/tempéreuse et ensuite de la libérer, tout en respectant les différentes priorités spécifiées.
+Les temps de traitement et changement de contexte entre les différents threads sont simulés par des Thread.sleep() dans les différentes méthodes qui implique les threads.
+
 Implémentation du BONUS : paramétrage du nombre de mouleuses et de tempéreuses
 --
 Nous avons implémenter la classe Chocolaterie de telle sorte qu'elle a comme attributs une liste de mouleuses et une liste de tempéreuses.
