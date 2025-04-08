@@ -1,11 +1,20 @@
+EQUIPE 28
+Jordan Ngankam Diffo 536 956 969
+Nicolas Castonguay - 536 774 848
+Houkr Sheng Tang - 537 264 295
+Diop Amadou Is - 111 283 255
+--
+
 Ce projet simule le fonctionnement concurrent d’une chocolaterie où plusieurs chocolatiers partagent des tempéreuses et des mouleuses limitées.
 Des ruptures simulées peuvent empêcher temporairement l’accès à certaines ressources.
 
-* Prérequis
+Prérequis
+--
 - Java 21 ou version ultérieure
 - Aucun framework ou bibliothèque externe requis
 
-* Exécution
+Exécution
+--
 - Simulation :
 Deux modes de simulation sont possibles :
 
@@ -24,9 +33,20 @@ Si aucun argument n’est fourni, les valeurs par défaut suivantes sont utilis�
 5 chocolatiers, 3 mouleuses, 2 tempéreuses
 Pour faire une simuler par défaut, il suffit de lancer directement main.java
 
+Gestion de priorités
+--
+La gestion de l'accès aux ressources est implémentées dans les méthodes requiereTempereuse, requiereMouleuse qui utilisent le principe de sémaphore.
+Cela permet à un seul chocolatier à la fois d'avoir accès une mouleuse/tempéreuse et ensuite de la libérer, tout en respectant les différentes priorités spécifiées.
+Les temps de traitement et changement de contexte entre les différents threads sont simulés par des Thread.sleep() dans les différentes méthodes qui implique les threads.
 
-* Exemple de simulation (avec paramétrage du nombre de chocolatiers, mouleuses et tempéreuses)
+Implémentation du BONUS : paramétrage du nombre de mouleuses et de tempéreuses
+--
+Nous avons implémenter la classe Chocolaterie de telle sorte qu'elle a comme attributs une liste de mouleuses et une liste de tempéreuses.
+Chaque tempéreuse et mouleuse implémente les différentes actions (témpérer, mouler, garnir...) avec les priorités associées.
+Le nombre de mouleuses et tempéreuses est paramétrable en ligne de commande de même que le nombre de chocolatiers avec la commande << java Main.java [nbChocolatiers] [nbMouleuses] [nbTempereuses] >>
 
+Exemple de simulation (avec paramétrage du nombre de chocolatiers, mouleuses et tempéreuses)
+--
 cd src
 java Main.java 5 2 1
 Utilisation des valeurs en ligne de commande : 
