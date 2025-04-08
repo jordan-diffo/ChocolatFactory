@@ -25,6 +25,10 @@ public class Main {
             System.out.println("Nombre de tempéreuses : " + nbTempereuses);
         }
 
+        System.out.println("Utilisation des valeurs en ligne de commande : ");
+        System.out.println("Nombre de chocolatiers : " + nbChocolatiers);
+        System.out.println("Nombre de mouleuses : " + nbMouleuses);
+        System.out.println("Nombre de tempéreuses : " + nbTempereuses);
         // Création de la chocolaterie avec les paramètres définis
         Chocolaterie chocolaterie = new Chocolaterie(nbMouleuses, nbTempereuses);
 
