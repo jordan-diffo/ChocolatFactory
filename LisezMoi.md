@@ -13,7 +13,7 @@ Deux modes de simulation sont possibles :
 Le nombre de chocolatiers, mouleuses et tempéreuses peut être modifié via les arguments en ligne de commande.
 Dans le terminal, exécuter les commandes :
 << cd src >>
-<< java Main.java [nbChocolatiers] [nbMouleuses] [nbTempereuses] >>  (s'assurer d'être dans le répertoire "src" avant d'exécuter cette commande)
+<< java Main.java nbChocolatiers nbMouleuses nbTempereuses >>  (s'assurer d'être dans le répertoire "src" avant d'exécuter cette commande)
 
 Par exemple, pour une simulation avec 5 chocolatiers, 3 mouleuses et 2 tempéreuses, exécuter les commandes 
 << cd src >>
