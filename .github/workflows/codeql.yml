@@ -31,11 +31,9 @@ jobs:
         with:
           languages: ${{ matrix.language }}
 
-      - name: Build Java code (custom)
-        run: |
-          mkdir -p out
-          find . -name "*.java" > sources.txt
-          javac -d out @sources.txt
+      - name: Build Java code with Maven
+        run: mvn install -DskipTests
+
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
